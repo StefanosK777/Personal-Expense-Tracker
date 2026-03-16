@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Expense Tracker</title>
+    <link rel="stylesheet" href="StyleSheet.css" />
+
+</head>
+
+<body class="tracker">
+    <nav>
+        
+        <h2>Personal Expense Tracker</h2>
+        <button onclick="logout()">Logout</button>
+    </nav>
+    
+
+    <div class="container">
+        <h3>Add Expense</h3>
+        <input type="text" id="name" placeholder="Expense name" />
+        <input type="number" id="amount" placeholder="Amount" />
+
+        <select id="category">
+            <option>Food</option>
+            <option>Transport</option>
+            <option>Shopping</option>
+            <option>Bills</option>
+            <option>Others</option>
+        </select>
+
+        <button onclick="addExpense()">Add Expense</button>
+        <h3>Total: $<span id="total">0</span></h3>
+
+        <table>
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Category</th>
+                <th>Amount</th>
+                <th>Date/Time</th>
+                <th>Action</th> 
+            </tr>
+
+            </thead>
+            <tbody id="expenseTable">
+                <!-- Expenses will appear here -->
+            </tbody>
+
+        </table>
+    </div>
+    <script src="JavaScript.js"></script>
+</body>
+
+    
+</html>
