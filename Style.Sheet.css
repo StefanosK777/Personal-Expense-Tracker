@@ -1,0 +1,144 @@
+/* Page */
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f5f9ff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+    body.tracker {
+        display: block;
+        height: auto;
+        margin: 0;
+        padding: 0;
+    }
+
+.auth-container {
+    background: white;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    text-align: center;
+    width: 90%;
+    max-width: 400px;
+}
+
+input{
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+}
+
+/* Navigation bar */
+
+nav {
+    background: #1e73e8;
+    color: white;
+    padding: 15px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logout-btn {
+    font-weight: bold;
+    font-size: 24px; 
+    background: white;
+    color: #1e73e8;
+    border: none;
+    padding: 15px 35px; 
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+    .logout-btn:hover {
+        background: #e6f0ff;
+    }
+
+    nav h2 {
+        margin: 0;
+    }
+
+/* Main container */
+
+.container {
+    width: 90%;
+    max-width: 900px;
+    margin: auto;
+    margin-top: 40px;
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* Form inputs */
+
+input, select {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0 8px 0; /* top right bottom left */
+    border: 1px solid #ccc;
+    border-radius: 16px;
+}
+
+/* Button */
+
+button {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: bold;
+    background: #1e73e8;
+    color: white;
+    cursor: pointer;
+}
+
+    button:hover {
+        background: #1557b0;
+    }
+
+
+p {
+    font-size: 14px;
+}
+
+    p a {
+        color: #1e73e8;
+        cursor: pointer;
+        text-decoration: none;
+        font-weight: bold;
+    }
+/* Table */
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th {
+    background: #1e73e8;
+    color: white;
+    padding: 10px;
+}
+
+td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    text-align: center;
+}
+
+/*table style improvements*/
+table tbody tr:hover {
+    background-color: #f0f5ff;
+}
