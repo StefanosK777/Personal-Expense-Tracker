@@ -1,17 +1,21 @@
 let total = 0;
 
 function addExpense() {
-    const name = document.getElementById("name").value.trim();
-    const amount = Number(document.getElementById("amount").value);
-    const category = document.getElementById("category").value;
+    const nameInput = document.getElementById("name");
+    const amountInput = document.getElementById("amount");
+    const category = document.getElementById("category");// Get the table body
+    const table = document.getElementById("expenseTable");
+
+    //Read input values
+    const name = nameInput.value.trim();
+    const amount = Number(amountInput.value);
+    const selectedCategory = category.value;
 
     if (!name || amount <= 0) {
         alert("Please enter a valid expense name and amount.");
         return;
     }
 
-    // Get the table body
-    const table = document.getElementById("expenseTable");
 
     // Create a new row at the bottom
     const row = table.insertRow(-1); // -1 ensures it goes to the bottom
@@ -29,7 +33,7 @@ function addExpense() {
 
     //Expense data
     cell1.innerText = name;
-    cell2.innerText = category;
+    cell2.innerText = selectedCategory;
     cell3.innerText = "$" + amount;
     cell4.innerText = dateTimeStr;
 
@@ -49,7 +53,7 @@ function addExpense() {
         const rowAmount = Number(cell3.innerText.replace("$", ""));
         total -= rowAmount;
         document.getElementById("total").innerText = total;
-        table.deleteRow(row.rowIndex - 1);
+        row.remove();
     }
     cell5.appendChild(delBtn);
 
@@ -58,38 +62,43 @@ function addExpense() {
     total += amount;
     document.getElementById("total").innerText = total;
 
+
     // Clear input fields
-    document.getElementById("name").value = "";
-    document.getElementById("amount").value = "";
+    nameInput.value = "";
+    amountInput.value = "";
 }
 
 
 //Login / Signup
+// Show login form
 function showLogin() {
     document.getElementById("loginForm").style.display = "block";
     document.getElementById("signupForm").style.display = "none";
 }
 
+// Show signup form
 function showSignup() {
     document.getElementById("signupForm").style.display = "block";
     document.getElementById("loginForm").style.display = "none";
 }
 
+// Signup
 function signup() {
-    const user = document.getElementById("signupUser").value;
-    const pass = document.getElementById("signupPass").value;
-
+    const user = document.getElementById("signupUser").value.trim();
+    const pass = document.getElementById("signupPass").value.trim();
 
     if (user === "" || pass === "") {
         alert("Please fill all fields");
         return;
     }
-    //save account
+
     localStorage.setItem("username", user);
     localStorage.setItem("password", pass);
 
-    alert("Acount created! Please log in.");
+    alert("Account created! Please log in.");
 }
+
+// Login
 function login() {
     const user = document.getElementById("loginUser").value;
     const pass = document.getElementById("loginPass").value;
@@ -97,49 +106,34 @@ function login() {
     const savedUser = localStorage.getItem("username");
     const savedPass = localStorage.getItem("password");
 
+    // Default admin account
+    const defaultUser = "admin";
+    const defaultPass = "1234";
 
-    if (user === savedUser && pass === savedPass) {
-        alert("Login succesful!");
-    }
-    else {
-        alert("Invalid username or password");
-    }
-}
-
-//Login
-function login() {
-    const user = document.getElementById("loginUser").value;
-    const pass = document.getElementById("loginPass").value;
-
-    const savedUser = localStorage.getItem("username");
-    const savedPass = localStorage.getItem("password");
-
-    if (user === savedUser && pass === savedPass) {
-        localStorage.setItem("loggedIn", "true"); // lowercase
+    if (
+        (user === savedUser && pass === savedPass) ||
+        (user === defaultUser && pass === defaultPass)
+    ) {
+        localStorage.setItem("loggedIn", "true");
         alert("Login successful!");
+        window.location.href = "index.html";
     } else {
         alert("Invalid username or password");
     }
 }
 
-// Logout
-function logout() {
-    localStorage.removeItem("loggedIn"); // match the key exactly
-    alert("Logged out successfully.");
-    location.reload(); // reload page
-}
-
+// Check login on page load
 window.onload = function () {
     const loggedIn = localStorage.getItem("loggedIn");
+    const currentPage = window.location.pathname.split("/").pop();
 
-    if (loggedIn !== "true") {
-        //User is not logged in, redirect to login page
+    if (currentPage != "login.html" && loggedIn !== "true") {
         window.location.href = "login.html";
     }
-}
+};
 
+// Logout
 function logout() {
-    localStorage.removeItem("loggedIn"); //remove session
-    
-    window.location.href = "login.html"; //Go to login page.
+    localStorage.removeItem("loggedIn");
+    window.location.href = "login.html";
 }
